@@ -15,6 +15,10 @@ sudo add-apt-repository \
 $(lsb_release -cs) \
 stable"
 
+<Download Docker>
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
 <Download MINIkube>
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
@@ -25,8 +29,8 @@ minikube start --vm-driver=none
 mv .minikube/cache/linux/v1.20.2/kubectl /usr/local/bin/
 sudo chown -R $USER $HOME/.kube $HOME/.minikube
 
-<YAML 1>
-nginx.yaml
+<YAML 1 nginx.yaml>
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -67,7 +71,8 @@ spec:
     
     
 
-<YAML 2>
+<YAML 2 nginx-volume.yaml>
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -95,12 +100,5 @@ spec:
         hostPath:
           path: /shared
           type: Directory
-
-
-
-    
-
-
-
 
 
